@@ -1,0 +1,21 @@
+{
+  "user": [
+    {
+      "name": "John Smith",
+      "age": "20",
+      "state": "New Orleans",
+      "country": "United States",
+      "phoneNumber": "+23456789",
+      "email": "jon@gmail.com"
+    },
+    {
+      "name": "Jim Collins",
+      "age": "25",
+      "state": "Montenegro",
+      "country": "Canada",
+      "phoneNumber": "+2341234567788",
+      "email": "jim@gmail.com"
+
+    }
+  ]
+}
