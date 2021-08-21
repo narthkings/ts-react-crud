@@ -3,15 +3,20 @@ import { Row, Col, Label, FormGroup, Input, Button } from 'reactstrap'
 import { Form, Formik } from 'formik'
 import * as Yup from 'yup';
 import { FormValues } from '../../types/types'
+import { create } from '../../actions/CrudActions'
+import toast from '../../helpers/toast';
+
 
 export const Adduser = () => {
-    const [loading, setLoading] = useState<boolean>(false);
 
-    const handleSubmit = (values: FormValues) => {
-        setLoading(true)
+    const onSubmit = (details: FormValues, { resetForm }: any) => {
 
-        console.log(values);
-        setLoading(false)
+        const data = { ...details }
+        create(data)
+            .then(() => {
+                toast.success('User added successfully')
+                resetForm({})
+            }).catch(err => console.log(err))
 
     }
 
@@ -40,21 +45,21 @@ export const Adduser = () => {
     })
 
     return (
-        <Formik validationSchema={registerSchema} onSubmit={handleSubmit} initialValues={formInputs}>
-            {({ values, errors, touched, handleChange, handleSubmit, handleBlur }) => (
+        <Formik validationSchema={registerSchema} onSubmit={onSubmit} initialValues={formInputs}>
+            {({ values: details, errors, touched, handleChange, handleSubmit, handleBlur }) => (
                 <Form onSubmit={handleSubmit} className="mx-5">
                     <Row className="mt-5">
                         <Col md={6}>
                             <FormGroup>
                                 <Label for="fullname">Full Name</Label>
-                                <Input name="name" bsSize="lg" type="text" id="fullname" value={values.name} placeholder="Enter Full Name" onBlur={handleBlur} onChange={handleChange} />
+                                <Input name="name" bsSize="lg" type="text" id="fullname" value={details.name} placeholder="Enter Full Name" onBlur={handleBlur} onChange={handleChange} />
                                 <p className="text-danger fs-6">{errors.name && touched.name && errors.name}</p>
                             </FormGroup>
                         </Col>
                         <Col md={6}>
                             <FormGroup>
                                 <Label for="email">Email</Label>
-                                <Input name="email" bsSize="lg" type="email" id="email" placeholder="Enter email" value={values.email} onBlur={handleBlur} onChange={handleChange} />
+                                <Input name="email" bsSize="lg" type="email" id="email" placeholder="Enter email" value={details.email} onBlur={handleBlur} onChange={handleChange} />
                                 <p className="text-danger fs-6">{errors.email && touched.email && errors.email}</p>
                             </FormGroup>
                         </Col>
@@ -63,14 +68,14 @@ export const Adduser = () => {
                         <Col md={6}>
                             <FormGroup>
                                 <Label for="phoneNumber">Phone Number</Label>
-                                <Input bsSize="lg" name="phoneNumber" type="text" id="phoneNumber" placeholder="Enter Phone number" value={values.phoneNumber} onBlur={handleBlur} onChange={handleChange} />
+                                <Input bsSize="lg" name="phoneNumber" type="text" id="phoneNumber" placeholder="Enter Phone number" value={details.phoneNumber} onBlur={handleBlur} onChange={handleChange} />
                                 <p className="text-danger fs-6">{errors.phoneNumber && touched.phoneNumber && errors.phoneNumber}</p>
                             </FormGroup>
                         </Col>
                         <Col md={6}>
                             <FormGroup>
                                 <Label for="age">Age</Label>
-                                <Input bsSize="lg" name="age" type="text" id="age" value={values.age} placeholder="Enter Your age" onBlur={handleBlur} onChange={handleChange} />
+                                <Input bsSize="lg" name="age" type="text" id="age" value={details.age} placeholder="Enter Your age" onBlur={handleBlur} onChange={handleChange} />
                                 <p className="text-danger fs-6">{errors.age && touched.age && errors.age}</p>
                             </FormGroup>
                         </Col>
@@ -79,28 +84,24 @@ export const Adduser = () => {
                         <Col md={6}>
                             <FormGroup>
                                 <Label for="country">Country</Label>
-                                <Input bsSize="lg" name="country" type="text" id="country" value={values.country} placeholder="Enter Your Country" onBlur={handleBlur} onChange={handleChange} />
+                                <Input bsSize="lg" name="country" type="text" id="country" value={details.country} placeholder="Enter Your Country" onBlur={handleBlur} onChange={handleChange} />
                                 <p className="text-danger fs-6">{errors.country && touched.country && errors.country}</p>
                             </FormGroup>
                         </Col>
                         <Col md={6}>
                             <FormGroup>
                                 <Label for="state">State</Label>
-                                <Input bsSize="lg" type="text" name="state" id="state" value={values.state} placeholder="Enter Your state" onBlur={handleBlur} onChange={handleChange} />
+                                <Input bsSize="lg" type="text" name="state" id="state" value={details.state} placeholder="Enter Your state" onBlur={handleBlur} onChange={handleChange} />
                                 <p className="text-danger fs-6">{errors.state && touched.state && errors.state}</p>
                             </FormGroup>
                         </Col>
                     </Row>
 
-                    <Button type="submit" className="bg-success mt-3">
-                       <span> {!loading ? "Create user" : "Processing" }</span>
-                        {loading &&  <div className="spinner-border" role="status">
-                            <span className="visually-hidden">Loading...</span>
-                        </div>}
-                    </Button>
+                    <Button type="submit" className="bg-success mt-3">Create user</Button>
                 </Form>
             )}
         </Formik>
     )
 }
+
 

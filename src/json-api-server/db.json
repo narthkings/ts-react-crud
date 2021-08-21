@@ -1,21 +1,22 @@
 {
   "user": [
     {
-      "name": "John Smith",
-      "age": "20",
-      "state": "New Orleans",
-      "country": "United States",
-      "phoneNumber": "+23456789",
-      "email": "jon@gmail.com"
+      "name": "dumto imoh",
+      "age": "200",
+      "email": "imohdumto@gmail.com",
+      "phoneNumber": "08117861791",
+      "country": "Nigeria",
+      "state": "NG-LA",
+      "id": 1
     },
     {
-      "name": "Jim Collins",
-      "age": "25",
-      "state": "Montenegro",
-      "country": "Canada",
-      "phoneNumber": "+2341234567788",
-      "email": "jim@gmail.com"
-
+      "name": "mildred sean",
+      "age": "40",
+      "email": "sean@gmail.com",
+      "phoneNumber": "09117861791",
+      "country": "USA",
+      "state": "chicago",
+      "id": 2
     }
   ]
 }

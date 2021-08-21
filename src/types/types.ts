@@ -1,4 +1,5 @@
 export type FormValues = {
+    id?: any | null,
     name: string;
     age: number;
     email: string;
@@ -6,3 +7,5 @@ export type FormValues = {
     state: string;
     country: string;
 }
+
+export type AllUsersFromDb = FormValues[];
